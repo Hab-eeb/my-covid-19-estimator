@@ -11,11 +11,14 @@ const covid19ImpactEstimator = (data) => {
     currentlyInfected: 0,
     infectionsByRequestedTime: 0
   };
+
+  const rImpact = impact;
+  const rSevereImpact = severeImpact;
   const perType = input.periodType;
   const day = input.timeToElapse;
   let days = 0;
-  let currInfI = impact.currentlyInfected;
-  let currInfS = severeImpact.currentlyInfected;
+  let currInfI = rImpact.currentlyInfected;
+  let currInfS = rSevereImpact.currentlyInfected;
   currInfI = input.reportedCases * 10;
   currInfS = input.reportedCases * 50;
 
@@ -27,13 +30,13 @@ const covid19ImpactEstimator = (data) => {
     days = day;
   }
 
-  impact.infectionsByRequestedTime = currInfI * (2 ** (days / 3));
-  severeImpact.infectionsByRequestedTime = currInfS * (2 ** (days / 3));
+  rImpact.infectionsByRequestedTime = currInfI * (2 ** (days / 3));
+  rSevereImpact.infectionsByRequestedTime = currInfS * (2 ** (days / 3));
 
   return {
     data: input,
-    impact: {},
-    severeImpact: {}
+    impact: rImpact,
+    severeImpact: rSevereImpact
   };
 };
 
