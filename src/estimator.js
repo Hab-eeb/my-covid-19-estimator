@@ -1,6 +1,6 @@
 const covid19ImpactEstimator = (data) => {
   const input = data;
-  const Week = 'week';
+  const Week = 'weeks';
   const Months = 'months';
   let currentlyInfectedI = 0;
   let infecByTimeI = 0;
