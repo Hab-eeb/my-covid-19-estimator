@@ -1,5 +1,6 @@
 const covid19ImpactEstimator = (data) => {
   const input = data;
+<<<<<<< HEAD
   const impact = {
     currentlyInfected: 0,
     infectionsByRequestedTime: 0
@@ -24,5 +25,11 @@ const covid19ImpactEstimator = (data) => {
     severeImpact
   };
 };
+=======
+  
+
+
+
+>>>>>>> 4e308cc34696dd63b2967680ea8b2fabd694112d
 
 export default covid19ImpactEstimator;
