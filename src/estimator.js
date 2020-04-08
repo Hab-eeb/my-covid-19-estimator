@@ -3,11 +3,11 @@ const covid19ImpactEstimator = (data) => {
   const Week = 'week';
   const Months = 'months';
 
-  const impact = {
+  let impact = {
     currentlyInfected: 0,
     infectionsByRequestedTime: 0
   };
-  const severeImpact = {
+  let severeImpact = {
     currentlyInfected: 0,
     infectionsByRequestedTime: 0
   };
@@ -32,11 +32,12 @@ const covid19ImpactEstimator = (data) => {
 
   rImpact.infectionsByRequestedTime = currInfI * (2 ** (days / 3));
   rSevereImpact.infectionsByRequestedTime = currInfS * (2 ** (days / 3));
-
+  impact = rImpact;
+  severeImpact = rSevereImpact;
   return {
-    data: input,
-    impact: rImpact,
-    severeImpact: rSevereImpact
+    input,
+    impact,
+    severeImpact
   };
 };
 
