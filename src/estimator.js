@@ -31,8 +31,8 @@ const covid19ImpactEstimator = (data) => {
   const casesI = 0.15 * infecByTimeI;
   const casesS = 0.15 * infecByTimeS;
   const availBed = 0.35 * totalBedSpace;
-  const availBedTimeI = availBed - casesI;
-  const availBedTimeS = availBed - casesS;
+  const availBedTimeI = Math.floor(availBed - casesI);
+  const availBedTimeS = Math.floor(availBed - casesS);
   return {
     data: input,
     impact: {
