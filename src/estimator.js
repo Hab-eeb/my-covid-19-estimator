@@ -6,6 +6,7 @@ const covid19ImpactEstimator = (data) => {
   let infecByTimeI = 0;
   let currentlyInfectedS = 0;
   let infecByTimeS = 0;
+  const totalBedSpace = input.totalHospitalBeds;
   const perType = input.periodType;
   const day = input.timeToElapse;
   let days = 0;
@@ -24,15 +25,24 @@ const covid19ImpactEstimator = (data) => {
   const dayzs = Math.round(dayx);
   infecByTimeI = currentlyInfectedI * (2 ** dayzs);
   infecByTimeS = currentlyInfectedS * (2 ** dayzs);
+  const casesI = Math.round(0.15 * infecByTimeI);
+  const casesS = Math.round(0.15 * infecByTimeS);
+  const availBed = Math.round(0.35 * totalBedSpace);
+  const availBedTimeI = availBed - casesI;
+  const availBedTimeS = availBed - casesS;
   return {
     data: input,
     impact: {
+      severeCasesByRequestedTime: casesI,
       currentlyInfected: currentlyInfectedI,
-      infectionsByRequestedTime: infecByTimeI
+      infectionsByRequestedTime: infecByTimeI,
+      hospitalBedsByRequestedTime: availBedTimeI
     },
     severeImpact: {
+      severeCasesByRequestedTime: casesS,
       currentlyInfected: currentlyInfectedS,
-      infectionsByRequestedTime: infecByTimeS
+      infectionsByRequestedTime: infecByTimeS,
+      hospitalBedsByRequestedTime: availBedTimeS
     }
   };
 };
