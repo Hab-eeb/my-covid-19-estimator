@@ -30,7 +30,7 @@ const covid19ImpactEstimator = (data) => {
   infecByTimeS = Math.round(currentlyInfectedS * (2 ** dayzs));
   const casesI = 0.15 * infecByTimeI;
   const casesS = 0.15 * infecByTimeS;
-  const availBed = Math.round(0.35 * totalBedSpace);
+  const availBed = 0.35 * totalBedSpace;
   const availBedTimeI = Math.round(availBed - casesI);
   const availBedTimeS = Math.round(availBed - casesS);
   return {
