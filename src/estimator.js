@@ -23,13 +23,13 @@ const covid19ImpactEstimator = (data) => {
   const dayz = Math.round(days);
   const dayx = dayz / 3;
   const dayzs = Math.round(dayx);
-  infecByTimeI = Math.round(currentlyInfectedI * (2 ** dayzs));
-  infecByTimeS = Math.round(currentlyInfectedS * (2 ** dayzs));
+  infecByTimeI = currentlyInfectedI * (2 ** dayzs);
+  infecByTimeS = currentlyInfectedS * (2 ** dayzs);
   const casesI = Math.round(0.15 * infecByTimeI);
   const casesS = Math.round(0.15 * infecByTimeS);
-  const availBed = Math.round(0.35 * totalBedSpace);
-  const availBedTimeI = availBed - casesI;
-  const availBedTimeS = availBed - casesS;
+  const availBed = 0.35 * totalBedSpace;
+  const availBedTimeI = Math.round(availBed - casesI);
+  const availBedTimeS = Math.round(availBed - casesS);
   return {
     data: input,
     impact: {
