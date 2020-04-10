@@ -8,7 +8,7 @@ const covid19ImpactEstimator = (data) => {
   let infecByTimeS = 0;
   const perType = input.periodType;
   const day = input.timeToElapse;
-  let days;
+  let days = 0;
   currentlyInfectedI = input.reportedCases * 10;
   currentlyInfectedS = input.reportedCases * 50;
 
