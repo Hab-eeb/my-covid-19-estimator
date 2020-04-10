@@ -21,7 +21,10 @@ const covid19ImpactEstimator = (data) => {
     days = day;
   }
   const dayz = Math.round(days);
-  const dayx = dayz / 3;
+  let dayx = dayz / 3;
+  if (dayz % 3 === 2) {
+    dayx -= 0.3;
+  }
   const dayzs = Math.round(dayx);
   infecByTimeI = Math.round(currentlyInfectedI * (2 ** dayzs));
   infecByTimeS = Math.round(currentlyInfectedS * (2 ** dayzs));
