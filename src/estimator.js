@@ -10,7 +10,7 @@ const covid19ImpactEstimator = (data) => {
   const perType = input.periodType;
   const day = input.timeToElapse;
   const DIncome = input.region.avgDailyIncomeInUSD;
-  // const DIncPop = input.region.avgDailyIncomePopulation;
+  const DIncPop = input.region.avgDailyIncomePopulation;
   let days = 0;
   currentlyInfectedI = input.reportedCases * 10;
   currentlyInfectedS = input.reportedCases * 50;
@@ -27,19 +27,19 @@ const covid19ImpactEstimator = (data) => {
   const dayzs = Math.trunc(dayx);
   infecByTimeI = Math.trunc(currentlyInfectedI * (2 ** dayzs));
   infecByTimeS = Math.trunc(currentlyInfectedS * (2 ** dayzs));
-  const casesI = Math.trunc(0.15 * infecByTimeI);
-  const casesS = Math.trunc(0.15 * infecByTimeS);
-  const availBed = Math.trunc(0.35 * totalBedSpace);
+  const casesI = 0.15 * infecByTimeI;
+  const casesS = 0.15 * infecByTimeS;
+  const availBed = 0.35 * totalBedSpace;
   const availBedTimeI = Math.trunc(availBed - casesI);
   const availBedTimeS = Math.trunc(availBed - casesS);
   const icuCasesI = Math.trunc(0.05 * infecByTimeI);
   const icuCasesS = Math.trunc(0.05 * infecByTimeS);
   const ventCasesI = Math.trunc(0.02 * infecByTimeI);
   const ventCasesS = Math.trunc(0.02 * infecByTimeS);
-  const majorityI = Math.trunc(0.65 * infecByTimeI);
-  const majorityS = Math.trunc(0.65 * infecByTimeS);
-  const dollInFligI = Math.trunc(majorityI * DIncome * dayz);
-  const dollInFligS = Math.trunc(majorityS * DIncome * dayz);
+  const majorityI = Math.trunc(DIncPop * infecByTimeI);
+  const majorityS = Math.trunc(DIncPop * infecByTimeS);
+  const dollInFligI = Math.trunc((majorityI * DIncome) / dayz);
+  const dollInFligS = Math.trunc((majorityS * DIncome) / dayz);
   return {
     data: input,
     impact: {
