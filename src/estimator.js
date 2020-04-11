@@ -31,12 +31,12 @@ const covid19ImpactEstimator = (data) => {
   const availBed = 0.35 * totalBedSpace;
   const availBedTimeI = Math.trunc(availBed - casesI);
   const availBedTimeS = Math.trunc(availBed - casesS);
-  const icuCasesI = Math.trunc(0.05 * infecByTimeI);
-  const icuCasesS = Math.trunc(0.05 * infecByTimeS);
-  const ventCasesI = Math.trunc(0.02 * infecByTimeI);
-  const ventCasesS = Math.trunc(0.02 * infecByTimeS);
-  const dollInFligI = Math.trunc((infecByTimeI * 0.65) * DIncome * days);
-  const dollInFligS = Math.trunc((infecByTimeS * 0.65) * DIncome * days);
+  const icuCasesI = 0.05 * infecByTimeI;
+  const icuCasesS = 0.05 * infecByTimeS;
+  const ventCasesI = 0.02 * infecByTimeI;
+  const ventCasesS = 0.02 * infecByTimeS;
+  const dollInFligI = Math.trunc((infecByTimeI * 0.65)) * DIncome * dayz;
+  const dollInFligS = Math.trunc((infecByTimeS * 0.65)) * DIncome * dayz;
   return {
     data: input,
     impact: {
