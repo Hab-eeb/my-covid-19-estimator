@@ -9,6 +9,7 @@ const covid19ImpactEstimator = (data) => {
   const totalBedSpace = input.totalHospitalBeds;
   const perType = input.periodType;
   const day = input.timeToElapse;
+  const DIncome = input.region.avgDailyIncomeInUSD;
   let days = 0;
   currentlyInfectedI = input.reportedCases * 10;
   currentlyInfectedS = input.reportedCases * 50;
@@ -22,10 +23,6 @@ const covid19ImpactEstimator = (data) => {
   }
   const dayz = Math.round(days);
   const dayx = dayz / 3;
-  // if (dayz % 3 === 2) {
-  //   dayx -= 0.3;
-  // }
-  // const dayzs = Math.round(dayx);
   const dayzs = Math.trunc(dayx);
   infecByTimeI = Math.round(currentlyInfectedI * (2 ** dayzs));
   infecByTimeS = Math.round(currentlyInfectedS * (2 ** dayzs));
@@ -34,19 +31,31 @@ const covid19ImpactEstimator = (data) => {
   const availBed = 0.35 * totalBedSpace;
   const availBedTimeI = Math.trunc(availBed - casesI);
   const availBedTimeS = Math.trunc(availBed - casesS);
+  const icuCasesI = 0.05 * infecByTimeI;
+  const icuCasesS = 0.05 * infecByTimeS;
+  const ventCasesI = 0.02 * infecByTimeI;
+  const ventCasesS = 0.02 * infecByTimeS;
+  const dollInFligI = (infecByTimeI * 0.65) * DIncome * days;
+  const dollInFligS = (infecByTimeS * 0.65) * DIncome * days;
   return {
     data: input,
     impact: {
       severeCasesByRequestedTime: casesI,
       currentlyInfected: currentlyInfectedI,
       infectionsByRequestedTime: infecByTimeI,
-      hospitalBedsByRequestedTime: availBedTimeI
+      hospitalBedsByRequestedTime: availBedTimeI,
+      casesForICUByRequestedTime: icuCasesI,
+      casesForVentilatorsByRequestedTime: ventCasesI,
+      dollarsInFlight: dollInFligI
     },
     severeImpact: {
       severeCasesByRequestedTime: casesS,
       currentlyInfected: currentlyInfectedS,
       infectionsByRequestedTime: infecByTimeS,
-      hospitalBedsByRequestedTime: availBedTimeS
+      hospitalBedsByRequestedTime: availBedTimeS,
+      casesForICUByRequestedTime: icuCasesS,
+      casesForVentilatorsByRequestedTime: ventCasesS,
+      dollarsInFlight: dollInFligS
     }
   };
 };
