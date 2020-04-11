@@ -22,14 +22,14 @@ const covid19ImpactEstimator = (data) => {
   } else {
     days = day;
   }
-  const dayz = Math.round(days);
+  const dayz = Math.trunc(days);
   const dayx = dayz / 3;
   const dayzs = Math.trunc(dayx);
-  infecByTimeI = Math.round(currentlyInfectedI * (2 ** dayzs));
-  infecByTimeS = Math.round(currentlyInfectedS * (2 ** dayzs));
-  const casesI = 0.15 * infecByTimeI;
-  const casesS = 0.15 * infecByTimeS;
-  const availBed = 0.35 * totalBedSpace;
+  infecByTimeI = Math.trunc(currentlyInfectedI * (2 ** dayzs));
+  infecByTimeS = Math.trunc(currentlyInfectedS * (2 ** dayzs));
+  const casesI = Math.trunc(0.15 * infecByTimeI);
+  const casesS = Math.trunc(0.15 * infecByTimeS);
+  const availBed = Math.trunc(0.35 * totalBedSpace);
   const availBedTimeI = Math.trunc(availBed - casesI);
   const availBedTimeS = Math.trunc(availBed - casesS);
   const icuCasesI = Math.trunc(0.05 * infecByTimeI);
