@@ -38,8 +38,8 @@ const covid19ImpactEstimator = (data) => {
   const ventCasesS = 0.02 * infecByTimeS;
   const majorityI = 0.65 * infecByTimeI;
   const majorityS = 0.65 * infecByTimeS;
-  const dollInFligI = Math.round(majorityI * DIncome * dayz);
-  const dollInFligS = Math.round(majorityS * DIncome * dayz);
+  const dollInFligI = majorityI * DIncome * dayz;
+  const dollInFligS = majorityS * DIncome * dayz;
   return {
     data: input,
     impact: {
